@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="timeline">
+    <form id="update-form" action="/update" method="post">
+      <div class="input-group">
+        <label for="update-nick">닉네임</label>
+        <input id="update-nick" type="text" name="nick"></div>
+      <div class="input-group">
+        <label for="update-password">비밀번호</label>
+        <input id="update-password" type="password" name="password">
+      </div>
+      <input type="hidden" name="_method" value="put"/>
+      <button id="update-btn" type="submit" class="btn">정보수정</button>
+    </form>
+  </div>
+{% endblock %}

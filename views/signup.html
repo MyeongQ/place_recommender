@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>로그인</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./css/style.css">
+        <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+    </head>
+    <body>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="signup-form">
+            <form id="join-form" action="/auth/join" method="post">
+                <input type="text" name="email" class="text-field" placeholder="이메일 주소">
+                <input type="text" name="nick" class="text-field" placeholder="아이디">
+                <input type="password" name="password" class="text-field" placeholder="비밀번호">
+                <input type="submit" value="가입하기" class="submit-btn">
+            </form>
+
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            window.onload = () => {
+                if (new URL(location.href).searchParams.get('error')) {
+                alert('이미 존재하는 이메일입니다.');
+                }
+            };
+        </script>
+    </body>
+</html>

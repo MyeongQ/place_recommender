@@ -1,2 +1,7 @@
+node_modules
 *.csv
 *.txt
+*.ignore
+*.gitignore
+*.env
+*.idea

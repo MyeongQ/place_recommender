@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <meta charset="utf-8">
+        {% block css %}
+        <link rel="stylesheet" href="./css/style.css">
+        <link href="https://fonts.googleapis.com/earlyaccess/notosanskr.css" rel="stylesheet">
+        {% endblock %}
+    </head>
+    <body>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <div class="login-form" action="/auth/login" method="post">
+            <form id="login-form" action="/auth/login" method="post">
+                <input type="text" name="email" class="text-field" placeholder="이메일 주소" required>
+                <input type="password" name="password" class="text-field" placeholder="비밀번호" required>
+                <input type="submit" value="로그인" class="submit-btn">
+            </form>
+
+            <div class="links">
+                <a id="login" href="/join">회원가입</a>
+                <a id="kakao" href="/auth/kakao">카카오로 시작</a>
+                <a id="google" href="/auth/google">Google로 시작</a>
+            </div>
+        </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            window.onload = () => {
+                if (new URL(location.href).searchParams.get('loginError')) {
+                alert(new URL(location.href).searchParams.get('loginError'));
+                }
+            };
+        </script>
+    </body>
+</html>
