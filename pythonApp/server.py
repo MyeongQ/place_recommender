@@ -4,6 +4,7 @@ import json
 from sqlalchemy import create_engine, text
 import pandas as pd
 from latent_factor import MatrixFactorization
+from makeCSVfromDB import makeCsv
 
 
 app = Flask(__name__)
@@ -16,7 +17,7 @@ app.database = database'''
 def recommend_by_latent_factor():
     PATH = "../dataset/user-movie-ratings.csv"
     rating = pd.read_csv(PATH, sep=",", names=['placeID', 'userID', 'rating'])
-    userId = request.args.get('userId'); # userId=2
+    userId = request.args.get('userId') # userId=2
     userId = int(userId)
     visited = list(map(int, request.args.get('visited').split(',')))
 
@@ -35,11 +36,10 @@ def recommend_by_latent_factor():
         'result': result
     })
 
-@app.route("/")
-def index():
-    start_coords = (35.158533, 129.160889)
-    folium_map = folium.Map(location=start_coords, zoom_start=16)
-    return folium_map._repr_html_()
+@app.route("/makecsv", methods=['GET'])
+def utilityMatrix():
+    makeCsv()
+    return ""
 
 @app.route("/data", methods=['GET'])
 def hello_request():

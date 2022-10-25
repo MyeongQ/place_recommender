@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 
 
 class MatrixFactorization():
-    def __init__(self, R, k=12, learning_rate=0.1, epochs=500, lambda1=0.0001, lambda2=0.0001, lambda3=0.001, lambda4=0.001):
+    def __init__(self, R, k=12, learning_rate=0.1, epochs=100, lambda1=0.0001, lambda2=0.0001, lambda3=0.001, lambda4=0.001):
         """
         :param R: rating matrix
         :param k: latent parameter = Rank
@@ -36,6 +36,7 @@ class MatrixFactorization():
     def fit(self):
         # train / test set 나누기
         train, test = train_test_split(self._R, test_size=0.1, random_state=0)
+        print(train.shape, test.shape)
 
         places_train = train['placeID'].map(lambda x: self._place_list.index(x))
         users_train = train['userID'].map(lambda x: self._user_list.index(x))
@@ -52,8 +53,9 @@ class MatrixFactorization():
         self._ratings_test = torch.FloatTensor(ratings_test.values)
 
         #rank = 12
-        numPlaces = len(list(set(self._places_train)))
-        numUsers = len(list(set(self._users_train)))
+        numPlaces = len(list(set(self._place_list)))
+        numUsers = len(list(set(self._user_list)))
+        print(numPlaces,numUsers)
 
         # init latent features
         # rank → 사용자, 아이템 vector의 차원
@@ -147,7 +149,8 @@ class MatrixFactorization():
 if __name__ == "__main__":
     # 1차 전처리된 csv파일
     PATH = "../dataset/user-movie-ratings.csv"
-    rating = pd.read_csv(PATH, sep=",", names=['placeID', 'userID', 'rating'])
+    rating = pd.read_csv(PATH, sep=",", names=['placeID', 'userID', 'rating'])[1:]
+    print(rating)
 
     recommender = MatrixFactorization(R=rating, k=15)
     recommender.fit()

@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const axios = require('axios');
 
 const { Review, Hashtag, Place, User } = require('../models');
 const { isLoggedIn } = require('./middlewares');
@@ -67,6 +68,7 @@ router.post('/:placeId', isLoggedIn, async(req, res, next) => {
             UserId: req.user.id,
             PlaceId: req.params.placeId,
         });
+        await axios.get("http://127.0.0.1:5000/makecsv");
         return res.redirect(`/review/${req.params.placeId}`);
     }catch (error) {
         console.error(error);
