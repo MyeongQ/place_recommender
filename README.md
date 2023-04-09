@@ -1,5 +1,7 @@
 # place_recommender
 협업 필터링 기반 국내 여행지 추천 시스템 프로제트
+### Ajou Softcon
+https://softcon.ajou.ac.kr/works/works.asp?uid=691&category=A
 
 ---
 
@@ -27,7 +29,7 @@
 **데이터 수집**
 : Selenium과 Beautiful Soup을 활용하여 Google Map의 각 여행지별 정보(리뷰 평균 평점, 리뷰 수, 장소 유형, 위도/경도, 키워드, 소개 글)과 리뷰 데이터(여행지, 유저ID, 별점)을 수집
 
-## Matrix Factorization
+### Matrix Factorization
 
 ![image](https://user-images.githubusercontent.com/56084058/230799495-e6e498b7-1cc8-40e8-81d0-e9034c38d005.png)
 
@@ -39,5 +41,4 @@ User-Item의 Rating으로 구성된 Utility Matrix를 User-Latent와 Item-Latent
 
 ![image](https://user-images.githubusercontent.com/56084058/230799565-d74d100e-a422-4cc9-a30b-9380da6ee3a5.png)
 
-## Ajou Softcon
-https://softcon.ajou.ac.kr/works/works.asp?uid=691&category=A
+
